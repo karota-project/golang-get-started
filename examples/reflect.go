@@ -1,18 +1,21 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"reflect"
 )
 
 func match(a, b interface{}) bool {
-	aval := reflect.ValueOf(a)      // Value Data
-	if aval.Kind() != reflect.Ptr { // Type Data
+	log.Println("a : ", reflect.TypeOf(a))
+	log.Println("b : ", reflect.TypeOf(b))
+
+	av := reflect.ValueOf(a)
+	if av.Kind() != reflect.Ptr {
 		return false
 	}
 
-	bval := reflect.ValueOf(b)
-	if aval.Elem().Kind() != bval.Kind() {
+	bv := reflect.ValueOf(b)
+	if av.Elem().Kind() != bv.Kind() {
 		return false
 	}
 
@@ -24,12 +27,15 @@ func main() {
 	var j float32
 	var k string
 
-	t1 := match(&i, 100)
-	fmt.Println("t1 : ", t1)
+	// *int and int
+	im := match(&i, 100)
+	log.Println("im : ", im)
 
-	t2 := match(&j, 10.4)
-	fmt.Println("t2 : ", t2)
+	// *float32 and float64
+	jm := match(&j, 10.4)
+	log.Println("jm : ", jm)
 
-	t3 := match(k, "abc")
-	fmt.Println("t3 : ", t3)
+	// *string and string
+	km := match(k, "abc")
+	log.Println("km : ", km)
 }

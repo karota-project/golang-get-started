@@ -6,6 +6,7 @@ package main
 
 import "fmt"
 
+// interface list
 type Accessor interface {
 	GetId() int
 	SetId(int)

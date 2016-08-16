@@ -11,6 +11,7 @@ func rcvCannel(_ch chan bool) {
 		fmt.Println(time.Now(), " : ", done)
 	}
 }
+
 func main() {
 	/* make channel*/
 	ch := make(chan bool)
